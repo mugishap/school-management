@@ -10,24 +10,27 @@ public class Actions {
     public static void main(String args[]) {
     }
 
-    public void createAction(String actionName, String initial) {
+    public Actions(String actionName, String initial) {
         this.actionName = actionName;
         this.initial = initial;
     }
+
 
     public void createSchool() {
         try {
             Scanner name = new Scanner(System.in);
             String schoolName, passcode;
             System.out.println("Enter the name of your school: ");
-            schoolName = name.next();
+            schoolName = name.nextLine();
             System.out.println("Enter school passcode: ");
-            passcode = name.next();
+            passcode = name.nextLine();
             try (FileWriter schoolCreator = new FileWriter("schools.txt")) {
                 LineReader lines = new LineReader();
                 int nextId = lines.getLines("schools.txt") + 1;
-                schoolCreator.write("ID:" + nextId + ",Name:" + schoolName + ",Passcode:" + passcode);
+                schoolCreator.write("ID:" + nextId + ",Name:" + schoolName + ",Passcode:" + passcode + "\n");
+                schoolCreator.close();
             }
+
             name.close();
         } catch (
 
@@ -86,9 +89,9 @@ public class Actions {
             String schoolName, passcode;
             try (Scanner name = new Scanner(System.in)) {
                 System.out.println("Enter the name of your school: ");
-                schoolName = name.next();
+                schoolName = name.nextLine();
                 System.out.println("Enter school passcode: ");
-                passcode = name.next();
+                passcode = name.nextLine();
             }
 
             System.out.println("Authenticating ----> " + schoolName + " & " + passcode);
